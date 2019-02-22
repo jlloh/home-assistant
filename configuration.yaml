@@ -1,0 +1,136 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Tampines
+  # Location required to calculate the time the sun rises and sets
+  latitude: 1.351332
+  longitude: 103.939090
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: UTC
+  # Customization file
+  customize: !include customize.yaml
+  auth_mfa_modules:
+    - type: totp
+ # Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+#http:
+#  use_x_forwarded_for: true
+#  trusted_proxies:
+#    - 127.0.0.1
+#    - ::1
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+cast:
+  media_player:
+    - host: 192.168.1.128
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    key: 'iwdmrawcbloqwjtd'
+
+light:
+  - platform: group
+    name: Dining Lights
+    entities:
+      - light.yeelight_color2_04cf8c919dd9
+      - light.yeelight_color2_04cf8c95298d
+      - light.yeelight_color2_04cf8c95274d
+
+switch:
+  - platform: broadlink
+    host: 192.168.1.71
+    mac: '78:0F:77:18:02:B1'
+    switches:
+      hall_aircon:
+        friendly_name: "Hall AirCon"
+        command_on: 'JgBMAnE5DSwPKQ8ODw4NDw8pDw4ODw4qDykNEA4qDRELEBApDSwMEQ4qDykNEA8ODCwPDg4OECkMEQwQDRAPDQwRDBAMEA0QDRAMEQ4ODg4PDgwQDBAPDgwRDg4QDQwQDSwPDg4ODw0MEA4PDSwMLA0QDw4ODg8pDw4MLA8ODw4ODg8ODBAMEA0sDisODw4qDCwNEAwRDg4ODw0PDg4ODwwQDisMEA0sDSwNDw0QDBANEAwQDRAMEA0QDBANEAwQEA0NDw0QDRAMEA0PDRANDw0QDQ8NEAwQDRANDw0QDBANEA0PDRAMEA0QDBANEA8NDw4ODg8ODg4PDgwQDg4PDg4ODw4MEA8ODBAPDgwQDw4MEBANDw0NLA0sDw0NLA0QDg4PKQ0sDQACMXQ6DykPKg8NDw4PDQ8qDBAPDgwsDyoPDgwsDRAMEA0sDCwPDg4rDioNEAwQDSwMEA0QDCwNEA0PDRAMEA8ODg8MEA0QDBAODw0PDg8NDw0PDRAMEA0QDBANEA0QDCwNEAwQDRAMEA4PDSsNLAwQDg8ODg0sDg8MLA0QDBANEAwQDRAMEA4rDCwNEAwtDCwNEAwQDRAMEA0PDRANDw0QDCwNEAwtDCwNEAwQDRAMEA0QDBANEAwQDRAMEA0QDBANEA0PDRANDw0RCxEMEA0QDBAMEA0QDBANEAwQDRAMEA0QDBAMEQwQDRAMEA0QDBANDw0QDg4NEAwQDRELEQ0PDBANEQwPDRAMEA0PDRANDw4PDBANLAwtDBANLAwQDRANKw4rDAANBQAAAAAAAAAAAAAAAA=='
+        command_off: 'JgBMAm86DSwPKQ8ODw0NEA8qDBAPDg4qDSwPDQ0sDg4NEAwsDSwPDgwsDSwPDg4ODyoODg8ODioPDgwQDRAODg8ODg4NEA4ODw4ODg8NDw4MEA8ODBANEAwQDw4ODg8ODw0PDgwRDBAPDg4ODykPKg0QDg4PDg0rDw4PKQ0QDRAODgwRDBAPDQ8qDC0ODg0sDioPDg4ODw4PDQ8ODw0PDg0PDyoMEA8ODg4PKg8NDRAPDQ8ODg4PDg4ODw0NEA8NDRAPDQ8ODBANEA8NDw4ODg0QDg4NEAwQDw4ODg4PDBANEA4ODw4ODg8ODg4PDQ0QDg4PDg4ODw4ODg8NDw4ODg0QDBAPDgwQDw4ODg0QDw0PDg4ODw0PDg8NDyoPKg4ODCwPDg8qDgACL3Q7DioPKgwQDw4MEA8qDw0PDg8qDioPDg4qDw4MEA8qDykNEA8qDioPDg4ODyoMEA8ODCwNEA8NDw4PDQ0QDg4PDRANDw4PDQ8ODg4NDw8ODw0PDg4ODw4ODg0QDg4PDQ0QDw0PDg4ODSwPKQ8ODw0PDg8pDRAPKhAMDRAMEA8ODg4PDg8pDyoNDw8qDSwNDw8ODw0PDg4ODw4ODg8ODioPDg8NDRAPKQ0QDQ8PDg8NDRAPDg4ODw4MEA0QDg4NEA4ODw4ODg8NEA0NEA4ODw4ODg8NDRAMEA0QDw0NEA0QDg4PDg4ODw0NEA8NDw4ODw4ODw4ODg8NDw4MEA0QDw4ODg8ODBAPDg8NDw4ODg8NDw4PDQ8ODioNLA0QDioNEAwsDwANBQAAAAAAAAAAAAAAAA=='
+      master_bedroom_light:
+        friendly_name: "Master Bedroom Light"
+        command_on: 'sQCMAAYNCiQhDSINIQ0hDSEOIQ0hDSENCyQhDSENCiUhDQolIQ4LAAFoIQ0hDSINIQ0hDSINCiQiDAsjIg0hDSINIQ0hDSEOIQ0hDQskIQ0hDQsjIg0KJCIOCgABaCIMIg0hDSENIg0hDQokIgwLJCEOIQ0hDSENIQ0iDSENIQ0KJSENIQ0KJSENCiUhAAXcAAAAAAAAAAAAAAAA'
+        command_off: 'sQCMAAYNCiQhDSINIQ0hDSEOIQ0hDSENCyQhDSENCiUhDQolIQ4LAAFoIQ0hDSINIQ0hDSINCiQiDAsjIg0hDSINIQ0hDSEOIQ0hDQskIQ0hDQsjIg0KJCIOCgABaCIMIg0hDSENIg0hDQokIgwLJCEOIQ0hDSENIQ0iDSENIQ0KJSENIQ0KJSENCiUhAAXcAAAAAAAAAAAAAAAA'
+      master_bedroom_fan:
+        friendly_name: "Master Bedroom Fan"
+        command_on: 'sgg0AAsAAWkiDiINIg0iDiINIg0LJSIOCyUiDSINIg4iDiINIg0iDiIOCyUiDSIOCyULJSINCyYAAAAA'
+        command_off: 'sgY0AAwAAWgjDSMNIw0jDSMNIw0MJCMNDCQjDSMNIw0jDSMNIw0jDSMNDCQjDSMNIw0jDQwkDCUAAAAA'
+      hall_light:
+        friendly_name: "Hall Light"
+        command_on: 'sgCSAAwOIA0LJCENCiUJJSENCiQhDiENIQ0KJQokIQ0KJSAOCiQhDQokIg4KAAFoIQ0hDSENIQ0iDCINCiQhDQolCiQhDgokIQ0hDSIMCiUKJCEOCiQiDAsjIg0KJCEPCgABaCEMIg0hDSENIQ4gDgokIQ0KJQokIQ0KJSENIQ0hDgklCiUgDQskIQ0KJSENCiUgAAXcAAAAAAAA'
+        command_off: 'sgCSAAwOIA0LJCENCiUJJSENCiQhDiENIQ0KJQokIQ0KJSAOCiQhDQokIg4KAAFoIQ0hDSENIQ0iDCINCiQhDQolCiQhDgokIQ0hDSIMCiUKJCEOCiQiDAsjIg0KJCEPCgABaCEMIg0hDSENIQ4gDgokIQ0KJQokIQ0KJSENIQ0hDgklCiUgDQskIQ0KJSENCiUgAAXcAAAAAAAA'
+      hall_fan:
+        friendly_name: "Hall Fan"
+        command_on: 'sgCYAAUKCQQEBA4FBAQkCyMiDQokISEIBAQNEAYLDQokCiQZCA4EBzcPFyUKJCENCyULAAFnIQ0hDSENIQ0iDCINCiQhDQokCyQiDAsjIgwiDSIMCyQKJCIMCyQhDQokCyQhDQomCgABZyENIQ0hDSIMIg0hDQokIQ0LJAokIgwLJCENIQ0iDAskCiQhDQskIQ0KJAskIQ0KAAXc'
+        command_off: 'sgY0AAwAAWciDSMNIw0jDSMNIw0MJCMNDCQMJCMNCyQiDSMNIw0LJAwkIw0LJCINIw0iDQskCyYAAAAA'
+
+google_assistant:
+  project_id: home-assistant-228714
+  api_key: !secret google_api_key
+  exposed_domains:
+    - switch
+    - light
+    - group
+  entity_config:
+    light.gateway_light_7c49ebb0b94a:
+      name: gateway
+      room: Master Bedroom
+    switch.master_bedroom_aircon:
+      name: aircon
+      room: Master Bedroom
+    switch.master_bedroom_fan:
+      name: fan
+      room: Master Bedroom

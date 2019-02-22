@@ -1,0 +1,25 @@
+
+light.gateway_light_7c49ebb0b94a:
+  friendly_name: Xiaomi Gateway
+  icon: mdi:alarm-light
+light.yeelight_color2_04cf8c919dd9:
+  friendly_name: Yeelight Bulb 1
+light.yeelight_color2_04cf8c95298d:
+  friendly_name: Yeelight Bulb 2
+light.yeelight_color2_04cf8c95274d:
+  friendly_name: Yeelight Bulb 3
+light.dining_lights:
+  friendly_name: Dining Lights
+  icon: mdi:ceiling-light
+
+switch.hall_fan:
+  icon: mdi:fan
+switch.master_bedroom_fan:
+  icon: mdi:fan
+switch.hall_light:
+  icon: mdi:ceiling-light
+switch.master_bedroom_light:
+  icon: mdi:ceiling-light
+
+switch.hall_aircon:
+  icon: mdi:air-conditioner

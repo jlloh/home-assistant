@@ -1,0 +1,87 @@
+- id: '1547135973846'
+  alias: Turn on Common Light when motion detected and dark
+  trigger:
+  - entity_id: binary_sensor.motion_sensor_158d0001ae94f6
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: sunset
+    condition: sun
+  action:
+  - alias: ''
+    data:
+      entity_id: switch.wall_switch_right_158d0002ec68c0
+    service: switch.turn_on
+- id: '1547218918450'
+  alias: Turn off Dining Lights when no motion detected
+  trigger:
+  - entity_id: binary_sensor.motion_sensor_158d0002583b24
+    for: 00:10:00
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - after: sunset
+    condition: sun
+  action:
+  - data:
+      entity_id: light.dining_lights
+    service: light.turn_off
+- id: '1547302784334'
+  alias: Turn on Dining Lights when coming home
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d00027b02f9
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: sunset
+    condition: sun
+  - condition: state
+    entity_id: binary_sensor.motion_sensor_158d0002583b24
+    state: 'off'
+  action:
+  - data:
+      entity_id: light.dining_lights
+    service: light.turn_on
+- id: '1548844105459'
+  alias: Turn Off Common Lights
+  trigger:
+  - entity_id: binary_sensor.motion_sensor_158d0001ae94f6
+    for: '2'
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: switch.wall_switch_right_158d0002ec68c0
+    state: 'on'
+  action:
+  - data:
+      entity_id: switch.wall_switch_right_158d0002ec68c0
+    service: switch.turn_off
+- id: '1549078205661'
+  alias: Turn On Common Bathroom Light when motion detected
+  trigger:
+  - entity_id: binary_sensor.motion_sensor_158d0001ae95f0
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.wall_switch_left_158d0002ec68c0
+    service: switch.turn_on
+- id: '1549078565864'
+  alias: Turn Off Common Bathroom Light when no motion detected
+  trigger:
+  - entity_id: binary_sensor.motion_sensor_158d0001ae95f0
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.wall_switch_left_158d0002ec68c0
+    service: switch.turn_off

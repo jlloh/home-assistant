@@ -1,0 +1,12 @@
+'1548433068692':
+  alias: Change Hall Light
+  sequence:
+  - data:
+      packet: sgY0AAwAAWcjDSINIw0jDSMNIwwMJCMNDCQMJCMNDCQjDSMNIw0MJAwkIw0MJCMNDCQjDQwkIw4AAAAA
+    service: switch.broadlink_send_packet_192_168_1_125
+  - data:
+      packet: sgY0AAwAAWcjDSINIw0jDSMNIwwMJCMNDCQMJCMNDCQjDSMNIw0MJAwkIw0MJCMNDCQjDQwkIw4AAAAA
+    service: switch.broadlink_send_packet_192_168_1_125
+  - data:
+      packet: sgY0AAwAAWcjDSINIw0jDSMNIwwMJCMNDCQMJCMNDCQjDSMNIw0MJAwkIw0MJCMNDCQjDQwkIw4AAAAA
+    service: switch.broadlink_send_packet_192_168_1_125
