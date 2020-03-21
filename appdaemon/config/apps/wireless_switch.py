@@ -18,7 +18,9 @@ class WirelessSwitch(hass.Hass):
 
   def toggle(self, event_name, data, kwargs):
     if data["click_type"] == "single":
+      self.log("single click from %s" % self.switch)
       if self.get_state(self.single_click_entity) == "on":
+        self.log("turning on %s" % self.single_click_entity)
         self.turn_off(self.single_click_entity)
       else:
         self.turn_on(self.single_click_entity)
