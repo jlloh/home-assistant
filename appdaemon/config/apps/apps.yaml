@@ -1,23 +1,35 @@
 hello_world:
   module: hello
   class: HelloWorld
-#common_toilet_light:
-#  module: common_toilet_light
-#  class: CommonToiletLight
 dining_room_light:
   module: motion_door_triggered_light
   class: MotionDoorTriggeredLight
   door: binary_sensor.door_window_sensor_158d00027b02f9
   light: light.dining_lights
-  sensor: binary_sensor.motion_sensor_158d0002583b24
-  motion_state: off
-master_room_light:
-  module: motion_door_triggered_light
-  class: MotionDoorTriggeredLight
-  door: binary_sensor.door_window_sensor_158d000276dab0
-  light: switch.master_bedroom_light
   sensor: binary_sensor.motion_sensor_158d0001ae95f0
-  motion_state: off
+  motion_state: "off"
+  delay_minutes: 5
+  motion_trigger_door_state: "off"
+
+#hall_light:
+#  module: motion_door_triggered_light
+#  class: MotionDoorTriggeredLight
+#  door: binary_sensor.door_window_sensor_158d00027b02f9
+#  light: switch.hall_light
+#  sensor: binary_sensor.motion_sensor_158d0002583b24
+#  motion_state: "n.a"
+#  delay_minutes: 5
+#  motion_trigger_door_state: "off"
+
+#master_room_light:
+#  module: motion_door_triggered_light
+#  class: MotionDoorTriggeredLight
+#  door: binary_sensor.door_window_sensor_158d000276dab0
+# light: switch.master_bedroom_light
+#  sensor: binary_sensor.motion_sensor_158d0002583b24
+# motion_state: "off"
+# delay_minutes: 5
+#motion_trigger_door_state: "on"
 common_walkway_light:
   module: common_walkway_light
   class: CommonWalkwayLight
@@ -26,7 +38,13 @@ dining_light_switch:
   class: WirelessSwitch
   switch: binary_sensor.switch_158d0001e82307
   single_click_entity: light.dining_lights
-  double_click_entity: switch.hall_light
+  double_click_entity: switch.hall_aircon
+hall_switch:
+  module: wireless_switch
+  class: WirelessSwitch
+  switch: binary_sensor.switch_158d0001e7f4de
+  single_click_entity: switch.hall_light
+  double_click_entity: switch.hall_fan
 master_bedroom_switch:
   module: wireless_switch
   class: WirelessSwitch
